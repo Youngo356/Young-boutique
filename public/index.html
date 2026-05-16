@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eva Young Boutique</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: black;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
+
+    .hero {
+      background: url("https://images.unsplash.com/photo-1521335629791-ce4aec67dd49") center/cover;
+      padding: 90px 20px;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .hero h2 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .auth-section {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    .auth-section h2 {
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1em;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    button {
+      background: black;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-weight: 600;
+      transition: background 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    .message {
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .review {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .review img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .review-content {
+      flex: 1;
+    }
+
+    .review-content h4 {
+      margin-bottom: 5px;
+      font-size: 1.1em;
+    }
+
+    .review-content .stars {
+      color: #ffc107;
+      margin-bottom: 8px;
+    }
+
+    .review-content p {
+      margin: 5px 0;
+      line-height: 1.5;
+    }
+
+    #starRating {
+      display: flex;
+      gap: 5px;
+      margin: 15px 0;
+    }
+
+    #starRating span {
+      font-size: 30px;
+      cursor: pointer;
+      opacity: 0.3;
+      transition: opacity 0.2s;
+    }
+
+    #starRating span:hover {
+      opacity: 0.6;
+    }
+
+    .review-section {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    .review-section h2 {
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .no-reviews {
+      text-align: center;
+      color: #999;
+      padding: 40px 20px;
+    }
+
+    .customer-service {
+      background: black;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+
+    .customer-service h2 {
+      margin-bottom: 15px;
+    }
+
+    .customer-service p {
+      margin: 8px 0;
+      font-size: 1.1em;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>✨ Eva Young Boutique ✨</h1>
+  <p>We deliver worldwide | Located in Aba</p>
+</header>
+
+<div class="hero">
+  <h2>Stylish Joggers ₦10,000</h2>
+  <p>Comfort. Class. Confidence.</p>
+</div>
+
+<div class="container">
+
+  <!-- LOGIN/SIGNUP -->
+  <div class="auth-section">
+    <div id="loginBox" class="visible">
+      <h2>Login</h2>
+      <div id="loginMessage" class="message"></div>
+      <input id="email" type="email" placeholder="Email" required>
+      <input id="password" type="password" placeholder="Password" required>
+      <button onclick="loginUser()">Login</button>
+      <p style="margin-top: 15px; text-align: center;">
+        Don't have an account? <a href="#" onclick="toggleSignUp()" style="color: black; text-decoration: underline;">Sign Up</a>
+      </p>
+    </div>
+
+    <div id="signupBox" class="hidden">
+      <h2>Create Account</h2>
+      <div id="signupMessage" class="message"></div>
+      <input id="signupEmail" type="email" placeholder="Email" required>
+      <input id="signupPassword" type="password" placeholder="Password (min 6 chars)" required>
+      <input id="signupConfirm" type="password" placeholder="Confirm Password" required>
+      <button onclick="signupUser()">Sign Up</button>
+      <p style="margin-top: 15px; text-align: center;">
+        Already have an account? <a href="#" onclick="toggleSignUp()" style="color: black; text-decoration: underline;">Login</a>
+      </p>
+    </div>
+
+    <div id="userBox" class="hidden">
+      <h3 id="welcome" style="color: #155724; margin-bottom: 15px;"></h3>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- REVIEW SECTION -->
+  <div class="review-section">
+    <h2>Leave a Review</h2>
+    <div id="reviewMessage" class="message"></div>
+
+    <input id="name" placeholder="Your Name" required>
+
+    <label style="display: block; margin-top: 15px; font-weight: 600;">Rate Your Experience:</label>
+    <div id="starRating">
+      <span onclick="setRating(1)">⭐</span>
+      <span onclick="setRating(2)">⭐</span>
+      <span onclick="setRating(3)">⭐</span>
+      <span onclick="setRating(4)">⭐</span>
+      <span onclick="setRating(5)">⭐</span>
+    </div>
+
+    <input type="hidden" id="rating" value="5">
+
+    <textarea id="review" placeholder="Write your review" rows="5" required></textarea>
+    <input id="image" placeholder="Profile Image URL (optional)">
+
+    <button onclick="submitReview()">Submit Review</button>
+  </div>
+
+  <!-- REVIEWS DISPLAY -->
+  <div class="review-section">
+    <h2>Customer Reviews</h2>
+    <div id="reviews"></div>
+  </div>
+
+</div>
+
+<!-- CUSTOMER SERVICE -->
+<div class="customer-service">
+  <h2>📞 Customer Service</h2>
+  <p>Phone: 09032741903</p>
+  <p>Email: youngonwunatuegwu@gmail.com</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Eva Young Boutique | All rights reserved</p>
+</footer>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const supabaseUrl = "https://qyucqdjddgyzevorubom.supabase.co";
+const supabaseKey = "sb_publishable_JsW9kNBEeRi-rHxidTYqHQ_K2k76ZX9";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+let selectedRating = 5;
+
+// TOGGLE SIGNUP
+function toggleSignUp() {
+  document.getElementById("loginBox").classList.toggle("hidden");
+  document.getElementById("loginBox").classList.toggle("visible");
+  document.getElementById("signupBox").classList.toggle("hidden");
+  document.getElementById("signupBox").classList.toggle("visible");
+}
+
+// SHOW MESSAGE
+function showMessage(elementId, message, type) {
+  const msgEl = document.getElementById(elementId);
+  msgEl.textContent = message;
+  msgEl.className = `message ${type}`;
+  msgEl.style.display = "block";
+  setTimeout(() => {
+    msgEl.style.display = "none";
+  }, 4000);
+}
+
+// STAR RATING
+function setRating(r) {
+  selectedRating = r;
+  document.getElementById("rating").value = r;
+
+  document.querySelectorAll("#starRating span").forEach((s, i) => {
+    s.style.opacity = i < r ? "1" : "0.3";
+  });
+}
+
+// SIGNUP
+async function signupUser() {
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+  const confirm = document.getElementById("signupConfirm").value;
+
+  if (!email || !password || !confirm) {
+    showMessage("signupMessage", "Please fill in all fields", "error");
+    return;
+  }
+
+  if (password !== confirm) {
+    showMessage("signupMessage", "Passwords do not match", "error");
+    return;
+  }
+
+  if (password.length < 6) {
+    showMessage("signupMessage", "Password must be at least 6 characters", "error");
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password
+  });
+
+  if (error) {
+    showMessage("signupMessage", error.message, "error");
+    return;
+  }
+
+  showMessage("signupMessage", "Account created! Please login.", "success");
+  setTimeout(() => toggleSignUp(), 2000);
+}
+
+// LOGIN
+async function loginUser() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    showMessage("loginMessage", "Please enter email and password", "error");
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    showMessage("loginMessage", error.message, "error");
+    return;
+  }
+
+  showMessage("loginMessage", "Login successful!", "success");
+  setTimeout(() => showUser(), 1000);
+}
+
+// SHOW USER
+async function showUser() {
+  const { data } = await supabase.auth.getUser();
+
+  if (data.user) {
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("signupBox").classList.add("hidden");
+    document.getElementById("userBox").classList.remove("hidden");
+    document.getElementById("welcome").innerText = "✅ Welcome " + data.user.email;
+  }
+}
+
+// LOGOUT
+async function logout() {
+  await supabase.auth.signOut();
+  location.reload();
+}
+
+// SUBMIT REVIEW
+async function submitReview() {
+  const name = document.getElementById("name").value;
+  const rating = document.getElementById("rating").value;
+  const review = document.getElementById("review").value;
+  const image = document.getElementById("image").value;
+
+  if (!name || !review) {
+    showMessage("reviewMessage", "Please fill in name and review", "error");
+    return;
+  }
+
+  const { error } = await supabase
+    .from("reviews")
+    .insert([{
+      customer_name: name,
+      rating: parseInt(rating),
+      review,
+      profile_image: image || null
+    }]);
+
+  if (error) {
+    showMessage("reviewMessage", error.message, "error");
+    return;
+  }
+
+  showMessage("reviewMessage", "Review submitted successfully! ✅", "success");
+  document.getElementById("name").value = "";
+  document.getElementById("review").value = "";
+  document.getElementById("image").value = "";
+  setRating(5);
+  
+  setTimeout(() => loadReviews(), 500);
+}
+
+// LOAD REVIEWS
+async function loadReviews() {
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  const container = document.getElementById("reviews");
+  container.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    container.innerHTML = '<div class="no-reviews">No reviews yet. Be the first to share your experience!</div>';
+    return;
+  }
+
+  data.forEach(r => {
+    const image = r.profile_image || "https://via.placeholder.com/60";
+    const stars = "⭐".repeat(r.rating);
+
+    container.innerHTML += `
+      <div class="review">
+        <img src="${image}" alt="${r.customer_name}" onerror="this.src='https://via.placeholder.com/60'">
+        <div class="review-content">
+          <h4>${r.customer_name}</h4>
+          <div class="stars">${stars}</div>
+          <p>${r.review}</p>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// INIT
+loadReviews();
+showUser();
+</script>
+
+</body>
+</html>
