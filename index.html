@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eva Young Boutique</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:'Poppins',sans-serif;background:#f5f5f5;}
+header{background:black;color:white;text-align:center;padding:20px;font-family:'Playfair Display',serif;}
+
+.hero{
+background:url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d") center/cover;
+height:80vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+}
+
+.container{padding:20px;max-width:1000px;margin:auto;}
+
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+
+.product{
+background:white;
+padding:10px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.product img{width:100%;border-radius:10px;}
+
+button{
+background:black;
+color:white;
+padding:10px;
+border:none;
+cursor:pointer;
+margin-top:10px;
+border-radius:5px;
+}
+
+input,textarea{width:100%;padding:10px;margin:5px 0;border-radius:5px;border:1px solid #ccc;}
+
+.review{
+background:white;
+padding:15px;
+margin:10px 0;
+border-radius:12px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
+display:flex;
+gap:10px;
+align-items:flex-start;
+}
+
+.review img{
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.stars{
+color:gold;
+font-size:18px;
+}
+
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+text-decoration:none;
+font-size:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Eva Young Boutique</h1>
+<p>Luxury Fashion | Worldwide Delivery</p>
+</header>
+
+<div class="hero">
+<h1>Upgrade Your Style</h1>
+<p>Premium Fashion Collections</p>
+</div>
+
+<div class="container">
+
+<h2>Featured Products</h2>
+
+<div class="products">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf">
+<p>Joggers Set - ₦10,000</p>
+<a href="https://wa.me/2348149327923?text=Hello%20I%20want%20to%20order%20Joggers%20Set">
+<button>Order Now</button></a>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03">
+<p>Luxury Kaftan Dress</p>
+<a href="https://wa.me/2348149327923?text=Hello%20I%20want%20to%20order%20Kaftan%20Dress">
+<button>Order Now</button></a>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1520975922284-9e0ce827fcae">
+<p>Black Two Piece Set</p>
+<a href="https://wa.me/2348149327923?text=Hello%20I%20want%20to%20order%20Black%20Two%20Piece%20Set">
+<button>Order Now</button></a>
+</div>
+
+</div>
+
+<hr>
+
+<h2>Login / Sign Up</h2>
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button onclick="loginUser()">Login</button>
+<button onclick="signupUser()">Sign Up</button>
+
+<hr>
+
+<h2>Leave a Review</h2>
+
+<input id="name" placeholder="Your Name">
+<input id="image" placeholder="Paste your image link (optional)">
+<textarea id="review" placeholder="Write your review"></textarea>
+
+<label>Rating:</label>
+<select id="rating">
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
+</select>
+
+<button onclick="submitReview()">Submit</button>
+
+<h2>Reviews</h2>
+<div id="reviews"></div>
+
+</div>
+
+<div style="background:black;color:white;text-align:center;padding:20px;">
+<h2>Customer Service</h2>
+<p>📞 09032741903</p>
+<p>📧 youngonwunatuegwu@gmail.com</p>
+
+<p>
+<a href="https://wa.me/2348149327923?text=Hello%20Eva%20Young%20Boutique%2C%20I%20want%20to%20make%20an%20order" style="color:#25D366;">
+💬 Chat on WhatsApp
+</a>
+</p>
+
+<p>
+<a href="https://chat.whatsapp.com/CfmkYM8PjjjBZ7OvnQOstk" style="color:#25D366;">
+👥 Join WhatsApp Community
+</a>
+</p>
+</div>
+
+<footer style="background:#111;color:white;text-align:center;padding:15px;">
+© 2026 Eva Young Boutique
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/2348149327923?text=Hello%20I%20want%20to%20order">💬</a>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script>
+const supabase = supabase.createClient(
+"https://qyucqdjddgyzevorubom.supabase.co",
+"sb_publishable_JsW9kNBEeRi-rHxidTYqHQ_K2k76ZX9"
+);
+
+async function loginUser(){
+const {error}=await supabase.auth.signInWithPassword({
+email:email.value,
+password:password.value
+});
+if(error) alert(error.message);
+else alert("Login successful");
+}
+
+async function signupUser(){
+const {error}=await supabase.auth.signUp({
+email:email.value,
+password:password.value
+});
+if(error) alert(error.message);
+else alert("Signup successful");
+}
+
+async function submitReview(){
+const {error}=await supabase.from("reviews").insert([{
+customer_name:name.value,
+review:review.value,
+image:image.value,
+rating:rating.value
+}]);
+
+if(error) alert(error.message);
+else {
+alert("Review added!");
+loadReviews();
+}
+}
+
+function showStars(num){
+return "⭐".repeat(num);
+}
+
+async function loadReviews(){
+const {data}=await supabase.from("reviews").select("*");
+
+let box=document.getElementById("reviews");
+box.innerHTML="";
+
+data.forEach(r=>{
+box.innerHTML+=`
+<div class="review">
+<img src="${r.image || 'https://i.imgur.com/6VBx3io.png'}">
+<div>
+<h4>${r.customer_name}</h4>
+<div class="stars">${showStars(r.rating)}</div>
+<p>${r.review}</p>
+</div>
+</div>`;
+});
+}
+
+loadReviews();
+</script>
+
+</body>
+  </html>
